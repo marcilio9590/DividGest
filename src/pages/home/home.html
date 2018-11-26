@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header color="primary">
   <ion-navbar>
     <ion-title>
       Gestão de Dívidas
@@ -7,11 +7,30 @@
 </ion-header>
 
 <ion-content padding>
-     
-    <ion-fab bottom right>
-      <button ion-fab color="primary" (click)="newCartoes()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
-  
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let cartao of cartoesList | async">
+      <ion-item>
+        <h1>{{cartao.nome}}</h1>
+        <p>{{cartao.vencimento }}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="editCartoes(cartao)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button color="danger" (click)="removeCartoes(cartao)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="newCartoes()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
