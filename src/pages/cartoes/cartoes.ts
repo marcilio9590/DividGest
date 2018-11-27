@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { CartoesProvider } from './../../providers/cartoes/cartoes';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { CartoesProvider } from "./../../providers/cartoes/cartoes";
+import { Observable } from "rxjs/Observable";
 
 @IonicPage()
 @Component({
@@ -10,42 +9,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'cartoes.html',
 })
 export class CartoesPage {
-  title: string;
-  form: FormGroup;
-  cartoes: any;
 
-
-
-  constructor(
-    public navCtrl: NavController, public navParams: NavParams,
-    private formBuilder: FormBuilder, private provider: CartoesProvider,
+  cartoesList: Observable<any>;
+  constructor(public navCtrl: NavController, private provider: CartoesProvider,
     private toast: ToastController) {
-    this.cartoes = this.navParams.data.cartoes || {};
-    this.createForm();
-    this.setUpPageTitle();
+    this.cartoesList = this.provider.getAll();
   }
 
-  private setUpPageTitle() {
-    this.title = this.navParams.data.cartoes ? 'Alteradando Cartão' : 'Novo Cartão';
+  newCartoes() {
+    this.navCtrl.push('CartoesPage');
   }
 
-  createForm() {
-    this.form = this.formBuilder.group({
-      key: [this.cartoes.key],
-      nome: [this.cartoes.nome, Validators.required],
-      vencimento: [this.cartoes.vencimento, Validators.required],
-    })
+  editCartoes(cartoes: any) {
+    this.navCtrl.push('CartoesPage', { cartoes: cartoes });
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.provider.save(this.form.value)
-        .then(() => {
-          this.toast.create({ message: 'Cartão salvo com sucesso.', duration: 3000 }).present();
-        }).catch((e) => {
-          this.toast.create({ message: 'Erro ao salvar cartão.', duration: 3000 }).present();
-          console.log(e);
-        });
-    }
+  removeCartoes(key: string) {
+    this.provider.remove(key)
+      .then(() => {
+        this.toast.create({ message: 'Cartão removido com sucesso.', duration: 3000 }).present();
+      })
+      .catch((e) => {
+        this.toast.create({ message: 'Erro ao remover cartão.', duration: 3000 }).present();
+        console.log(e);
+      })
   }
 }

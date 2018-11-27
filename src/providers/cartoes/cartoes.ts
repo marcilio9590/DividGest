@@ -3,8 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable()
 export class CartoesProvider {
-  private BAR = "/";
-  private PATH = 'cartoes';
+  private PATH = 'cartoes/';
   constructor(private db: AngularFireDatabase) { }
 
   getAll() {
@@ -13,7 +12,7 @@ export class CartoesProvider {
   }
 
   get(key: string) {
-    return this.db.object(this.PATH + this.BAR + key)
+    return this.db.object(this.PATH + key)
       .valueChanges();
   }
 
@@ -26,7 +25,7 @@ export class CartoesProvider {
         //   .update(cartoes.key, { nome: cartoes.nome, vencimento: cartoes.vencimento })
         //   .then(() => resolve())
         //   .catch((e) => reject(e));
-        this.db.object(this.PATH + this.BAR + cartoes.key)
+        this.db.object(this.PATH + cartoes.key)
           .update({ nome: cartoes.nome, vencimento: cartoes.vencimento })
           .then(() => resolve())
           .catch((e) => reject(e));

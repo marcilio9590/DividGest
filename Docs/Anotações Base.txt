@@ -1,0 +1,15 @@
+Card
+	key_card
+	nome
+	vencimento
+	
+User
+	key_user
+	nome
+	
+Purchase
+	data
+	valor
+	parcelas
+	key_user
+	key_card

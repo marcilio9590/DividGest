@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">
+      <div [hidden]="!form.controls.nome.errors.required">O campo é obrigatório</div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Vencimento</ion-label>
+      <ion-datetime displayFormat="YYYY-MM" formControlName="vencimento">
+      </ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.vencimento.valid && (form.controls.vencimento.dirty || form.controls.vencimento.touched)"
+      color="danger">
+      <div [hidden]="!form.controls.vencimento.errors.required">O campo é obrigatório</div>
+    </ion-item>
+  </form>
+
+  <div padding>
+    <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+  </div>
+</ion-content>
