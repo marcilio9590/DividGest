@@ -16,12 +16,12 @@ export class CartoesPage {
     this.cartoesList = this.provider.getAll();
   }
 
-  newCartoes() {
-    this.navCtrl.push('CartoesPage');
+  newCartao() {
+    this.navCtrl.push('CartaoPage');
   }
 
   editCartoes(cartoes: any) {
-    this.navCtrl.push('CartoesPage', { cartoes: cartoes });
+    this.navCtrl.push('CartaoPage', { cartoes: cartoes });
   }
 
   removeCartoes(key: string) {
