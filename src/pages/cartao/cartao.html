@@ -17,10 +17,6 @@
       <div [hidden]="!form.controls.nome.errors.required">O campo é obrigatório</div>
     </ion-item>
 
-
-
-
-
     <ion-item>
       <ion-label stacked>Vencimento</ion-label>
       <ion-select formControlName="vencimento">
@@ -32,16 +28,6 @@
       <div [hidden]="!form.controls.vencimento.errors.required">O campo é obrigatório</div>
     </ion-item>
 
-
-    <!-- <ion-item>
-      <ion-label stacked>Vencimento</ion-label>
-      <ion-datetime displayFormat="DDDD" pickerFormat="DDDD" formControlName="vencimento">
-      </ion-datetime>
-    </ion-item>
-    <ion-item *ngIf="!form.controls.vencimento.valid && (form.controls.vencimento.dirty || form.controls.vencimento.touched)"
-      color="danger">
-      <div [hidden]="!form.controls.vencimento.errors.required">O campo é obrigatório</div>
-    </ion-item> -->
   </form>
 
   <div padding>
