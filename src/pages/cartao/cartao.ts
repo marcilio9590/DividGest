@@ -19,6 +19,7 @@ export class CartaoPage {
   title: string;
   form: FormGroup;
   cartoes: any;
+  dayList: any;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -27,6 +28,15 @@ export class CartaoPage {
     this.cartoes = this.navParams.data.cartoes || {};
     this.createForm();
     this.setUpPageTitle();
+    this.createListDays();
+  }
+
+  private createListDays() {
+    this.dayList = [];
+    for (let index = 1; index <= 31; index++) {
+      this.dayList.push(index);
+
+    }
   }
 
   private setUpPageTitle() {

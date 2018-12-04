@@ -1,5 +1,7 @@
 {
   "name": "DividGest",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
