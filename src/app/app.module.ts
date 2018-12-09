@@ -11,6 +11,7 @@ import { CartoesProvider } from '../providers/cartoes/cartoes';
 import { UsuariosProvider } from '../providers/usuarios/usuarios';
 import { ComumProvider } from '../providers/comum/comum';
 import { AES256 } from '@ionic-native/aes-256';
+import { DividasProvider } from '../providers/dividas/dividas';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AES256 } from '@ionic-native/aes-256';
     CartoesProvider,
     UsuariosProvider,
     ComumProvider,
-    AES256
+    AES256,
+    DividasProvider
   ]
 })
 export class AppModule { }
