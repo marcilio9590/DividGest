@@ -24,12 +24,12 @@ export class UsuariosProvider extends ComumProvider {
     return new Promise((resolve, reject) => {
       if (usuario.key) {
         this.getDb().object(this.PATH + usuario.key)
-          .update({ nome: usuario.nome, password: this.aes256.generateSecureKey(usuario.password) })
+          .update({ nome: usuario.nome })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
         this.getDb().list(this.PATH)
-          .push({ nome: usuario.nome, password: usuario.password })
+          .push({ nome: usuario.nome, password: this.aes256.generateSecureKey(usuario.password) })
           .then((result: any) => resolve(result.key));
       }
     })

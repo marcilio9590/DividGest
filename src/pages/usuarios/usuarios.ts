@@ -17,7 +17,7 @@ export class UsuariosPage {
     console.log(this.usuarios);
   }
 
-  newCartao() {
+  newUsuario() {
     this.navCtrl.push('UsuarioPage');
   }
 
