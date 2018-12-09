@@ -19,7 +19,9 @@ export class CartoesProvider {
 
   get(key: string) {
     return this.db.object(this.PATH + key)
-      .valueChanges();
+      .snapshotChanges().subscribe(action => {
+        return (action.payload.val() + action.key);
+      });
   }
 
   save(cartoes: any) {
@@ -27,10 +29,6 @@ export class CartoesProvider {
     // set sobreescreve todo o objeto da key
     return new Promise((resolve, reject) => {
       if (cartoes.key) {
-        // this.db.list(this.PATH)
-        //   .update(cartoes.key, { nome: cartoes.nome, vencimento: cartoes.vencimento })
-        //   .then(() => resolve())
-        //   .catch((e) => reject(e));
         this.db.object(this.PATH + cartoes.key)
           .update({ nome: cartoes.nome, vencimento: cartoes.vencimento })
           .then(() => resolve())
