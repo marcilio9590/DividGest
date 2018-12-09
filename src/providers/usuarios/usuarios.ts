@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AbstractProvider } from './../abstract/abstract';
+import { ComumProvider } from './../comum/comum';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AES256 } from '@ionic-native/aes-256';
 
 @Injectable()
-export class UsuariosProvider extends AbstractProvider {
+export class UsuariosProvider extends ComumProvider {
   private PATH = 'usuarios/';
-  constructor(db: AngularFireDatabase) {
+  constructor(db: AngularFireDatabase, private aes256: AES256) {
     super(db);
   }
 
@@ -23,12 +24,12 @@ export class UsuariosProvider extends AbstractProvider {
     return new Promise((resolve, reject) => {
       if (usuario.key) {
         this.getDb().object(this.PATH + usuario.key)
-          .update({ nome: usuario.nome, vencimento: usuario.vencimento })
+          .update({ nome: usuario.nome, password: this.aes256.generateSecureKey(usuario.password) })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
         this.getDb().list(this.PATH)
-          .push({ nome: usuario.nome, vencimento: usuario.vencimento })
+          .push({ nome: usuario.nome, password: usuario.password })
           .then((result: any) => resolve(result.key));
       }
     })

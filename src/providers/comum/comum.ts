@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class AbstractProvider {
+export class ComumProvider {
 
   constructor(private db: AngularFireDatabase) { }
 

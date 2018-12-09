@@ -1,7 +1,7 @@
 <ion-header color="primary">
   <ion-navbar>
     <ion-title>
-      Cartões
+      Usuários
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,16 +9,15 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let cartao of cartoesList | async">
+    <ion-item-sliding *ngFor="let usuario of usuarios | async">
       <ion-item>
-        <h1>{{cartao.nome}}</h1>
-        <p>{{cartao.vencimento }}</p>
+        <h1>{{usuario.nome}}</h1>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="secondary" (click)="editCartoes(cartao)">
+        <button ion-button color="secondary" (click)="editUsuario(usuario)">
           <ion-icon name="create"></ion-icon>
         </button>
-        <button ion-button color="danger" (click)="removeCartoes(cartao.key)">
+        <button ion-button color="danger" (click)="removeUsuario(usuario.key)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
@@ -28,7 +27,7 @@
   </ion-list>
 
   <ion-fab bottom right>
-    <button ion-fab color="primary" (click)="newCartao()">
+    <button ion-fab color="primary" (click)="newUsuario()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

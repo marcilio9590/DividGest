@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AbstractProvider } from './../abstract/abstract';
+import { ComumProvider } from './../comum/comum';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
-export class CartoesProvider extends AbstractProvider {
+export class CartoesProvider extends ComumProvider {
   private PATH = 'cartoes/';
   constructor(db: AngularFireDatabase) {
     super(db);
