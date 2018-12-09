@@ -14,6 +14,7 @@ export class CartoesPage {
   constructor(public navCtrl: NavController, private provider: CartoesProvider,
     private toast: ToastController) {
     this.cartoesList = this.provider.getAll();
+    console.log(this.cartoesList);
   }
 
   newCartao() {

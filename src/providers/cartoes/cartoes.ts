@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CartoesProvider {
@@ -7,8 +8,13 @@ export class CartoesProvider {
   constructor(private db: AngularFireDatabase) { }
 
   getAll() {
-    return this.db.list(this.PATH)
-      .valueChanges();
+    var itemsRef: AngularFireList<any>;
+    itemsRef = this.db.list(this.PATH);
+    return itemsRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
   }
 
   get(key: string) {
