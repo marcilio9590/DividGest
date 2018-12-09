@@ -10,6 +10,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CartoesProvider } from '../providers/cartoes/cartoes';
+import { UsuariosProvider } from '../providers/usuarios/usuarios';
+import { AbstractProvider } from '../providers/abstract/abstract';
 
 
 
@@ -40,7 +42,9 @@ import { CartoesProvider } from '../providers/cartoes/cartoes';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CartoesProvider
+    CartoesProvider,
+    UsuariosProvider,
+    AbstractProvider
   ]
 })
 export class AppModule {}

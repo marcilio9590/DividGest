@@ -3,8 +3,8 @@ import { AbstractProvider } from './../abstract/abstract';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
-export class CartoesProvider extends AbstractProvider {
-  private PATH = 'cartoes/';
+export class UsuariosProvider extends AbstractProvider {
+  private PATH = 'usuarios/';
   constructor(db: AngularFireDatabase) {
     super(db);
   }
@@ -17,18 +17,18 @@ export class CartoesProvider extends AbstractProvider {
     return super.get(key, this.PATH);
   }
 
-  save(cartao: any) {
+  save(usuario: any) {
     // Update sobrescreve apenas as propriedades passadas.
     // set sobreescreve todo o objeto da key
     return new Promise((resolve, reject) => {
-      if (cartao.key) {
-        this.getDb().object(this.PATH + cartao.key)
-          .update({ nome: cartao.nome, vencimento: cartao.vencimento })
+      if (usuario.key) {
+        this.getDb().object(this.PATH + usuario.key)
+          .update({ nome: usuario.nome, vencimento: usuario.vencimento })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
         this.getDb().list(this.PATH)
-          .push({ nome: cartao.nome, vencimento: cartao.vencimento })
+          .push({ nome: usuario.nome, vencimento: usuario.vencimento })
           .then((result: any) => resolve(result.key));
       }
     })
@@ -37,6 +37,5 @@ export class CartoesProvider extends AbstractProvider {
   remove(key: string) {
     return super.remove(key, this.PATH);
   }
-
 
 }
