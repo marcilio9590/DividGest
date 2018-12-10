@@ -40,7 +40,7 @@ export class CartaoPage {
   }
 
   private setUpPageTitle() {
-    this.title = this.navParams.data.cartoes ? 'Alteradando Cartão' : 'Novo Cartão';
+    this.title = this.navParams.data.cartoes ? 'Alterandando Cartão' : 'Novo Cartão';
   }
 
   createForm() {

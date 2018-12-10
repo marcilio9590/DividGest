@@ -24,7 +24,7 @@ export class UsuarioPage {
   }
 
   private setUpPageTitle() {
-    this.title = this.navParams.data.usuario ? 'Alteradando Usuário' : 'Novo Usuário';
+    this.title = this.navParams.data.usuario ? 'Alterandando Usuário' : 'Novo Usuário';
   }
 
   createForm() {

@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>Cartão</ion-label>
+      <ion-select formControlName="cartao">
+        <ion-option *ngFor="let cartao of cartoes | async" [value]="cartao">{{cartao.nome}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.cartao.valid && (form.controls.cartao.dirty || form.controls.cartao.touched)" color="danger">
+      <div [hidden]="!form.controls.cartao.errors.required">O campo é obrigatório</div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Usuários</ion-label>
+      <ion-select formControlName="usuario">
+        <ion-option *ngFor="let usuario of usuarios | async" [value]="usuario">{{usuario.nome}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.usuario.valid && (form.controls.usuario.dirty || form.controls.usuario.touched)"
+      color="danger">
+      <div [hidden]="!form.controls.usuario.errors.required">O campo é obrigatório</div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Valor</ion-label>
+      <ion-input type="text" formControlName="valor"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.valor.valid && (form.controls.valor.dirty || form.controls.valor.touched)" color="danger">
+      <div [hidden]="!form.controls.valor.errors.required">O campo é obrigatório</div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="data"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.data.valid && (form.controls.data.dirty || form.controls.data.touched)" color="danger">
+      <div [hidden]="!form.controls.data.errors.required">O campo é obrigatório</div>
+    </ion-item>
+
+  </form>
+
+  <div padding>
+    <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+  </div>
+</ion-content>
